@@ -1,6 +1,6 @@
 const express = require('express');
 const session = require('express-session');
-const routes = require('./controllers/routes');
+const routes = require('./controllers/index');
 const exphbs = require('express-handlebars');
 const path = require('path');
 const PORT = process.env.PORT || 3001;

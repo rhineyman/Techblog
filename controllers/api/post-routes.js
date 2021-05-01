@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const { Post, User } = require('../../models');
+const authorized = require('../../utils/auth');
 
 
 //gets existing post?
@@ -54,6 +55,20 @@ router.get('/:id', (req, res) => {
             console.log(err);
             res.status(500).json(err);
         });
+});
+
+router.post('/', withAuth, async (req, res) => {
+    try {
+        const newPost = await Post.create({
+            title: req.params.title,
+            content: req.params.content,
+            user_id: req.session.user_id
+        });
+
+        res.status(200).json(newPost)
+    } catch (err) {
+        res.status(500).json(err);
+    }
 });
 
 module.exports = router;
