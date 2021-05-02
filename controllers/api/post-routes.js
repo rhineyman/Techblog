@@ -57,7 +57,7 @@ router.get('/:id', (req, res) => {
         });
 });
 
-router.post('/', withAuth, async (req, res) => {
+router.post('/', authorized, async (req, res) => {
     try {
         const newPost = await Post.create({
             title: req.params.title,
